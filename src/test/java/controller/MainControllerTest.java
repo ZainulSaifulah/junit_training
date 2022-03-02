@@ -2,6 +2,7 @@ package controller;
 
 import model.Item;
 import model.Transaction;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +13,20 @@ import static data.ItemDummy.getDummyItems;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainControllerTest {
-    private final List<Item> expectedItems = getDummyItems();
-    private final MainController mainController = new MainController();
-    private final Item expectedItem = new Item("3", "New Smartwatch", 800, 8, 12);
-    private final Date date = new Date();
-    private final Transaction expectedTransaction = new Transaction("", expectedItem, date, 2);
+    private List<Item> expectedItems;
+    private MainController mainController;
+    private Item expectedItem;
+    private Date date;
+    private Transaction expectedTransaction;
+
+    @BeforeEach
+    void setUp() {
+        expectedItems = getDummyItems();
+        mainController = new MainController();
+        expectedItem = new Item("3", "New Smartwatch", 800, 8, 12);
+        date = new Date();
+        expectedTransaction = new Transaction("", expectedItem, date, 2);
+    }
 
     @Test
     @DisplayName("Get List Item")
